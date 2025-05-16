@@ -49,6 +49,8 @@ includeFile("mobile/tatooine_npc/serverobjects.lua")
 includeFile("mobile/vehicle/serverobjects.lua")
 includeFile("mobile/vendor/serverobjects.lua")
 
+--includeFile("mobile/ahsoka.lua")
+
 -- Server Objects
 includeFile("mobile/21b_surgical_droid_crafted.lua")
 includeFile("mobile/21b_surgical_droid.lua")

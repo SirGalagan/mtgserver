@@ -1,0 +1,48 @@
+om5_convo_handler = conv_handler:new {}
+
+function om5_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
+    local convoTemplate = LuaConversationTemplate(pConvTemplate)
+    return convoTemplate:getScreen("greeting")
+end
+
+function om5_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
+    local screen = LuaConversationScreen(pConvScreen)
+    local screenID = screen:getScreenID()
+
+    if screenID == "follow" then
+        -- Correct way to make the NPC follow the player
+    	if AiAgent(pNpc) then
+        	print("This NPC is an AI agent!")
+    	else
+        	print("This NPC is NOT an AI agent!")
+    	end
+    	print("Lets set/remove flags!")
+    AiAgent(pNpc):removeObjectFlag(AI_STATIONARY)
+    -- Add the necessary flags to make it follow and not aggro
+    AiAgent(pNpc):addObjectFlag(AI_NOAIAGGRO)
+    AiAgent(pNpc):addObjectFlag(AI_ESCORT)
+
+    -- Set the NPC to follow the player
+    AiAgent(pNpc):setFollowObject(pPlayer)
+    AiAgent(pNpc):setMovementState(AI_FOLLOW)
+    print ("all done for you!")
+            print("AI Agent Info:")
+	    local followObj = AiAgent(pNpc):getFollowObject()
+if followObj then
+    print("Follow Object ID: " .. SceneObject(followObj):getObjectID())  -- Get the Object ID
+else
+    print("Follow Object: None")
+end
+        --print("Follow Object: " .. AiAgent(pNpc):getFollowObject())  -- Will print the object ID the NPC is following
+        print("Movement State: " .. AiAgent(pNpc):getMovementState())  -- Will print the movement state
+        print("Target of Target ID: " .. AiAgent(pNpc):getTargetOfTargetID())  -- Will print the ID of the target's target
+
+-- Debug message
+CreatureObject(pNpc):sendSystemMessage("NPC is now attempting to follow the player.")
+
+
+    end
+
+    return pConvScreen
+end
+

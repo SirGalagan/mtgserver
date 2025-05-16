@@ -48,6 +48,26 @@ includeFile("lair/serverobjects.lua")
 
 -- Outfits
 includeFile("outfits/serverobjects.lua")
+-- SirGalagan
+includeFile("outfits/ahsoka_outfit.lua")
+includeFile("imp_atst_lvl18.lua")
+includeFile("vader_lvl15.lua")
+includeFile("luke_lvl15.lua")
+includeFile("reb_troop_lvl10.lua")
+includeFile("imp_st_lvl10.lua")
+includeFile("ahsoka.lua")
+includeFile("eventhandler.lua")
+includeFile("bh1.lua")
+includeFile("bh2.lua")
+includeFile("md7z.lua")
+includeFile("om5_npc.lua")
+includeFile("test1.lua")
+includeFile("test2.lua")
+includeFile("test3.lua")
+includeFile("test4.lua")
+includeFile("seron_kai_npc.lua")
+includeFile("jedi_master_vantos.lua")
+includeFile("mysterious_stranger.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/mobile/serverobjects.lua")

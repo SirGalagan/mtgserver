@@ -727,6 +727,15 @@ includeFile("tests/ai_test.lua")
 -- Server Event Automation
 includeFile("events/ServerEventAutomation.lua")
 
+-- SirGalagan
+includeFile("eventhandler_convo_handler.lua")
+includeFile("md7z_convo_handler.lua")
+includeFile("om5_convo_handler.lua")
+includeFile("mysterious_stranger_convo_handler.lua")
+includeFile("jedi_master_vantos_spawn.lua")
+includeFile("seron_kai_convo_handler.lua")
+includeFile("master_vantos_handler.lua")
+
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
 

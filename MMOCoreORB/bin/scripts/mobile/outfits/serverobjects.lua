@@ -1,3 +1,4 @@
+includeFile("outfits/ahsoka_outfit.lua")
 includeFile("outfits/band_bandfill_outfit.lua")
 includeFile("outfits/band_fanfar_outfit.lua")
 includeFile("outfits/band_fizz_outfit.lua")

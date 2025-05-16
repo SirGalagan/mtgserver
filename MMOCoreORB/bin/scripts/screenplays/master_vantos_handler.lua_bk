@@ -1,0 +1,49 @@
+vantos_convo_handler = conv_handler:new {}
+
+function vantos_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
+local ObjectManager = require("managers.object.object_manager")
+local QuestManager = require("managers.quest.quest_manager")
+
+
+	local convoTemplate = LuaConversationTemplate(pConvTemplate)
+
+	        if readData(SceneObject(pPlayer):getObjectID() .. ":vantos:completed") == 1 then
+			        return convoTemplate:getScreen("already_trained")
+				    end
+
+				        return convoTemplate:getScreen("greeting")
+				end
+
+				function vantos_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
+					    local screen = LuaConversationScreen(pConvScreen)
+					        local screenID = screen:getScreenID()
+						    local playerID = SceneObject(pPlayer):getObjectID()
+
+						        if (screenID == "begin_training") then
+								        CreatureObject(pPlayer):sendSystemMessage("\\#FFFF00\\I will train you in the ways of the Force. Your journey begins now!")
+									        
+									if not CreatureObject(pPlayer):hasSkill("force_title_jedi_padawan") then
+											            awardSkill(pPlayer, "force_title_jedi_rank_01")
+												    	CreatureObject(pPlayer):playEffect("clienteffect/trap_electric_01.cef", "")
+														CreatureObject(pPlayer):playMusicMessage("sound/music_become_jedi.snd")
+												            end
+
+
+
+																giveItem(pInventory, "object/tangible/loot/quest/force_sensitive/force_crystal.iff", -1)
+
+
+													            awardSkill(pPlayer, "force_abilities_novice")
+														            awardSkill(pPlayer, "force_defense_novice")
+															            awardSkill(pPlayer, "lightsaber_1hand_novice")
+
+																    CreatureObject(pPlayer):awardExperience("force_rank_xp", 1000, true)
+																	    local pInv = CreatureObject(pPlayer):getSlottedObject("inventory")
+																	            writeData(SceneObject(pPlayer):getObjectID() .. ":vantos:completed", 1)
+
+																			        end
+
+																				    return pConvScreen
+																			    end
+
+

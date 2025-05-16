@@ -334,5 +334,13 @@ includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
+-- SirGalagan
+includeFile("conversations/eventhandler_convo.lua")
+includeFile("conversations/md7z_convo.lua")
+includeFile("conversations/om5_convo.lua")
+includeFile("conversations/seron_kai_convo.lua")
+includeFile("conversations/mysterious_stranger_convo.lua")
+includeFile("conversations/master_vantos_convo.lua")
+
 -- Custom Conversations
 includeFile("custom_content/conversations.lua")
