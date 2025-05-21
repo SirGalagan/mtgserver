@@ -220618,3 +220618,30 @@ object_mobile_shared_zucca_boar_hue = SharedCreatureObjectTemplate:new {
 }
 
 ObjectTemplates:addClientTemplate(object_mobile_shared_zucca_boar_hue, "object/mobile/shared_zucca_boar_hue.iff")
+
+-- sirgalagan
+object_mobile_shared_dressed_jedi_female_togruta_01 = SharedCreatureObjectTemplate:new {
+  clientTemplateFileName = "object/mobile/shared_dressed_jedi_female_togruta_01.iff"
+
+}
+
+ObjectTemplates:addClientTemplate(object_mobile_shared_dressed_jedi_female_togruta_01, "object/mobile/shared_dressed_jedi_female_togruta_01.iff")
+
+
+object_mobile_shared_dressed_sabine_wren = SharedCreatureObjectTemplate:new {
+  clientTemplateFileName = "object/mobile/shared_dressed_sabine_wren.iff"
+
+}
+
+ObjectTemplates:addClientTemplate(object_mobile_shared_dressed_sabine_wren, "object/mobile/shared_dressed_sabine_wren.iff")
+
+
+
+object_mobile_shared_anakin_robe = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/shared_anakin_robe.iff"
+
+}
+
+ObjectTemplates:addClientTemplate(object_mobile_shared_anakin_robe, "object/mobile/shared_anakin_robe.iff") 
+
+

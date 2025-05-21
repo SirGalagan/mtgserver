@@ -96,6 +96,46 @@ end
         end
 end
 
+        local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+        if (pInventory ~= nil) then
+             local crystalID = createLoot(pInventory, "color_crystals", 1, true)
+             if (crystalID ~= nil) then
+             local colorCrystal = LuaLightsaberCrystalComponent(getSceneObject(crystalID))
+             colorCrystal:setColor(31) -- Optional: sets it to a specific color
+             colorCrystal:updateCrystal(31)
+        end
+end
+
+        local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+        if (pInventory ~= nil) then
+             local crystalID = createLoot(pInventory, "color_crystals", 1, true)
+             if (crystalID ~= nil) then
+             local colorCrystal = LuaLightsaberCrystalComponent(getSceneObject(crystalID))
+             colorCrystal:setColor(47) -- Optional: sets it to a specific color
+             colorCrystal:updateCrystal(47)
+        end
+end
+
+        local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+        if (pInventory ~= nil) then
+             local crystalID = createLoot(pInventory, "color_crystals", 1, true)
+             if (crystalID ~= nil) then
+             local colorCrystal = LuaLightsaberCrystalComponent(getSceneObject(crystalID))
+             colorCrystal:setColor(17) -- Optional: sets it to a specific color
+             colorCrystal:updateCrystal(17)
+        end
+end
+
+        local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+        if (pInventory ~= nil) then
+             local crystalID = createLoot(pInventory, "color_crystals", 1, true)
+             if (crystalID ~= nil) then
+             local colorCrystal = LuaLightsaberCrystalComponent(getSceneObject(crystalID))
+             colorCrystal:setColor(25) -- Optional: sets it to a specific color
+             colorCrystal:updateCrystal(25)
+        end
+end
+
     end
     print("before pConvScreen")
     return pConvScreen
