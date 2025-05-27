@@ -10,9 +10,9 @@ function vantos_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
     print("vantos=playerID")
     -- Stage checks
     local completed = readData(playerID .. ":vantos:completed") == 1
-    local padawanUpgraded = false -- readData(playerID .. ":vantos:padawan_upgraded") == 1
-    local knightReady = false --readData(playerID .. ":vantos:knight_ready") == 1
-    local bhTriggered = false -- readData(playerID .. ":vantos:bh_triggered") == 1
+    local padawanUpgraded = false --readData(playerID .. ":vantos:padawan_upgraded") == 1
+    local knightReady = readData(playerID .. ":vantos:knight_ready") == 1
+    local bhTriggered = readData(playerID .. ":vantos:bh_triggered") == 1
 
     -- Debugging prints
     print("=== Vantos Handler: getInitialScreen Debug ===")
@@ -72,7 +72,6 @@ function vantos_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, se
         -- In future, advancing to knight stage
         writeData(playerID .. ":vantos:knight_ready", 1)
     elseif screenID == "bounty_hunter_trigger" then
-	    	    print("bounty_hunter_trigger -- Spawn")
 	            writeData(playerID .. ":vantos:bh_triggered", 1)
 		    --CreatureObject(pNpc):setMaxHAM(100)
 		    --CreatureObject(pNpc):setHAM(100)
@@ -85,11 +84,7 @@ function vantos_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, se
 
 		    local pLeader = spawnMobile("corellia", "bh1_enemy", 0, x+5, z, y+2, 0, 360)
 		    if pLeader ~= nil then
-			    AiAgent(pLeader):clearPatrolPoints()
 			    AiAgent(pLeader):setDefender(pNpc)
-			    AiAgent(pLeader):addObjectFlag(AI_STATIONARY)
-			    AiAgent(pLeader):setMovementState(AI_PATROLLING)
-			    AiAgent(pLeader):executeBehavior()
 
 		    end
 
