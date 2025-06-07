@@ -729,6 +729,9 @@ includeFile("events/ServerEventAutomation.lua")
 
 -- SirGalagan
 includeFile("eventhandler_convo_handler.lua")
+includeFile("shuttle_service_convo_handler.lua")
+includeFile("fixer_convo_handler.lua")
+includeFile("r3p5_convo_handler.lua")
 includeFile("md7z_convo_handler.lua")
 includeFile("om5_convo_handler.lua")
 includeFile("mysterious_stranger_convo_handler.lua")

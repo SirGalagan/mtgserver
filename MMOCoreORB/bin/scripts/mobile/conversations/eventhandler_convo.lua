@@ -22,8 +22,8 @@ faction_set = ConvoScreen:new {
     customDialogText = "Take this!",
     stopConversation = "false",
     options = {
-        {"Rebel", "faction_rebel"},
-        {"Imperial", "faction_imperial"},
+        {"Rebel/Droids", "faction_rebel"},
+        {"Imperial/Clones", "faction_imperial"},
         {"Neutral", "faction_neutral"}
     }
 }
