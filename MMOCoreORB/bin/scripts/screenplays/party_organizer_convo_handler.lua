@@ -1,14 +1,30 @@
-shuttle_service_convo_handler = conv_handler:new {}
+party_organizer_convo_handler = conv_handler:new {}
 
-function shuttle_service_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
-    print("shuttle_service_convo_handler:getInitialScreen")
+function party_organizer_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
+    print("party_organizer_convo_handler:getInitialScreen")
     local convoTemplate = LuaConversationTemplate(pConvTemplate)
     return convoTemplate:getScreen("greeting")
 end
 
-function shuttle_service_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
+function party_organizer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
+    print("Party organizer starts here")
     local screen = LuaConversationScreen(pConvScreen)
     local screenID = screen:getScreenID()
+
+    local planetName = SceneObject(pPlayer):getZoneName()
+    local x = SceneObject(pPlayer):getWorldPositionX()
+    local y = SceneObject(pPlayer):getWorldPositionY()
+    --local z = SceneObject(pPlayer):getWorldPositionZ()
+    local z = getWorldFloor(x,y,planetName)    
+
+    print("Party X:" .. x .. " y:" .. y .. " z:" .. z)
+    print("Planet Name:" .. planetName)
+    if (screenID == "party_yes") then
+	    print("party_yes")
+    	    spawnMobile("naboo", "house_guest", 0, 69.0884, 25.6789, 177.819, 0, 0)
+    	    spawnMobile("naboo", "house_guest", 0, 65, 34, 167, 0, 0)
+    end
+    --[[
     local playerID = SceneObject(pPlayer):getObjectID()
     local NPCID = SceneObject(pNpc):getObjectID()
     writeData(playerID .. ":shuttle:playerID", playerID)
@@ -19,19 +35,20 @@ function shuttle_service_convo_handler:runScreenHandlers(pConvTemplate, pPlayer,
     print("screenID 1:" .. screenID)
     local screenidtwo = readStringData(playerID .. ":shuttle:screenID")
     print("screenID 2:" .. screenidtwo)
-    print("shuttle_service_convo_handler:runScreenHandlers")
-    if (screenID == "corellia" or screenID == "naboo" or screenID == "tatooine" or screenID == "jabba") then
+    print("party_organizer_convo_handler:runScreenHandlers")
+    if (screenID == "corellia" or screenID == "naboo") then
 	 print("Lets go!")
 	 --writeData(playerID .. ":ShuttleService:screenId", screenID)
 	 --createEvent(100, "CityControlLanding", "setupMusic", pMobile, "")
 	 self:setupMusic(pPlayer)
 	 self:shuttleflyby(pPlayer)
     end
-    print("Shuttle service ends here")
+    ]]--
+    print("Party organizer ends here")
     return pConvScreen
 end
 
-function shuttle_service_convo_handler:bringhome(pPlayer)
+function party_organizer_convo_handler:bringhome(pPlayer)
 	print("bringhome")
 	--local pScreenId = readStringData("screenId:")
 	--local pShuttle = readStringData("shuttleID:")
@@ -64,41 +81,16 @@ function shuttle_service_convo_handler:bringhome(pPlayer)
 			print("more than 0 players")
                         for i = 1, #playerTable, 1 do
                                 local pPlayer = playerTable[i]
-				SceneObject(pPlayer):switchZone("naboo", 76, 14, 135, 0)
+				SceneObject(pPlayer):switchZone("naboo", 76, 14, 115, 0)
                         end
                 end
 	end
-
-        -- Tatooine
-        if screenID == "tatooine" then
-                print("Heading to Tatooine")
-                if (#playerTable > 0) then
-                        print("more than 0 players")
-                        for i = 1, #playerTable, 1 do
-                                local pPlayer = playerTable[i]
-                                SceneObject(pPlayer):switchZone("tatooine", -3831, 2, -6293, 0)
-                        end
-                end
-        end
-
-	-- Jabba's Palace
-        if screenID == "jabba" then
-                print("Heading to Jabba")
-                if (#playerTable > 0) then
-                        print("more than 0 players")
-                        for i = 1, #playerTable, 1 do
-                                local pPlayer = playerTable[i]
-                                SceneObject(pPlayer):switchZone("tatooine", -5870, 90, -6174, 0)
-                        end
-                end
-        end
-
 	print("bringhome - end")
 end
 
 
 
-function shuttle_service_convo_handler:shuttleflyby(pPlayer)
+function party_organizer_convo_handler:shuttleflyby(pPlayer)
     print("Shuttle Fly By")
     local playerID = SceneObject(pPlayer):getObjectID()
     local planetName = SceneObject(pPlayer):getZoneName()
@@ -124,12 +116,12 @@ function shuttle_service_convo_handler:shuttleflyby(pPlayer)
     print("shuttleID:" .. shuttleID)
     --writeData(playerID .. ":ShuttleService:shuttleID", shuttleID)
     --writeData(playerID .. ":ShuttleService:shuttleStatus", 1) -- Spawned
-    createEvent(1 * 1000, "shuttle_service_convo_handler", "handleShuttlePosture", pPlayer, "")
+    createEvent(1 * 1000, "party_organizer_convo_handler", "handleShuttlePosture", pPlayer, "")
     --createEvent(6 * 1000, "ShuttleDropoff", "landShuttle", pPlayer, "")
 
 end
 
-function shuttle_service_convo_handler:handleShuttlePosture(pPlayer)
+function party_organizer_convo_handler:handleShuttlePosture(pPlayer)
 	--print("handleShuttlePosture(pPlayer)" .. pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 	print("handleShuttlePosture:playerID:" .. playerID)
@@ -144,11 +136,11 @@ function shuttle_service_convo_handler:handleShuttlePosture(pPlayer)
 	CreatureObject(pShuttle):setPosture(PRONE)
 	--writeStringData("ShuttlePosture:", "PRONE")
 	--createEvent(19000, "CityControlLanding", "spawnLandingParty", "", "")
-	createEvent(21 * 1000, "shuttle_service_convo_handler", "bringhome", pPlayer, "")
+	createEvent(21 * 1000, "party_organizer_convo_handler", "bringhome", pPlayer, "")
 end
 
 --[[
-function shuttle_service_convo_handler:landShuttle(pPlayer)
+function party_organizer_convo_handler:landShuttle(pPlayer)
 	print("Land Shuttle")
 	local pShuttle = getSceneObject(shuttleID)
 	CreatureObject(pShuttle):setPosture(PRONE)
@@ -156,7 +148,7 @@ function shuttle_service_convo_handler:landShuttle(pPlayer)
 
 end
 ]]--
-function shuttle_service_convo_handler:setupMusic(pMobile)
+function party_organizer_convo_handler:setupMusic(pMobile)
 	if (pMobile == nil) then
 		return
 	end

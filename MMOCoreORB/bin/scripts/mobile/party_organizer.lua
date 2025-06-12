@@ -1,6 +1,6 @@
-shuttle_service = Creature:new {
+party_organizer = Creature:new {
     objectName = "",
-    customName = "Shuttle Officer",
+    customName = "Party Organizer",
     socialGroup = "townsperson",
     faction = "",
     level = 1,
@@ -17,12 +17,12 @@ shuttle_service = Creature:new {
     optionsBitmask = 265,
     diet = HERBIVORE,
 
-    templates = {"object/mobile/dressed_imperial_officer_m.iff"},
+    templates = {"object/mobile/dressed_noble_old_human_female_01.iff"},
     lootGroups = {},
     weapons = {},
-    conversationTemplate = "shuttle_service_convo_template",
+    conversationTemplate = "party_organizer_convo_template",
     attacks = {}
 }
 
-CreatureTemplates:addCreatureTemplate(shuttle_service, "shuttle_service")
+CreatureTemplates:addCreatureTemplate(party_organizer, "party_organizer")
 

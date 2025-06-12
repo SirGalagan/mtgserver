@@ -16,14 +16,15 @@ function fixer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	 -- Adding skills:
 	 -- awardSkill(pPlayer, "force_title_jedi_rank_01")
 	-- self:jedi_fast_track(pPlayer)
-	
+	local pGhost = CreatureObject(pPlayer):getPlayerObject()
+	PlayerObject(pGhost):increaseFactionStanding("jabba", 100)
 	-- for another time...
-	local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
+	--local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 	 -- Adding XP
 	 -- CreatureObject(pPlayer):awardExperience("jedi_general", 50000, true)
 	--local pItem = giveItem(pInventory, "object/tangible/crafting/station/jedi_tool.iff", -1)
-	giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
-	giveItem(pInventory, "object/tangible/deed/vehicle_deed/jetpack_deed.iff", -1)
+	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
+	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/jetpack_deed.iff", -1)
 	--giveItem(pInventory, "", -1)
 	--giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
 	--giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)

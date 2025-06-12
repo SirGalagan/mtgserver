@@ -336,6 +336,7 @@ includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
 -- SirGalagan
 includeFile("conversations/eventhandler_convo.lua")
+includeFile("conversations/party_organizer_convo.lua")
 includeFile("conversations/shuttle_service_convo.lua")
 includeFile("conversations/r3p5_convo.lua")
 includeFile("conversations/fixer_convo.lua")

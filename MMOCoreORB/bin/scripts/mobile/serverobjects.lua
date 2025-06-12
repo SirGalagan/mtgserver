@@ -50,6 +50,8 @@ includeFile("lair/serverobjects.lua")
 includeFile("outfits/serverobjects.lua")
 -- SirGalagan
 includeFile("outfits/ahsoka_outfit.lua")
+includeFile("party_organizer.lua")
+includeFile("house_guest.lua")
 includeFile("shuttle_service.lua")
 includeFile("fixer.lua")
 includeFile("r3p5.lua")

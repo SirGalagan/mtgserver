@@ -728,6 +728,8 @@ includeFile("tests/ai_test.lua")
 includeFile("events/ServerEventAutomation.lua")
 
 -- SirGalagan
+includeFile("content_spawner.lua")
+includeFile("party_organizer_convo_handler.lua")
 includeFile("eventhandler_convo_handler.lua")
 includeFile("shuttle_service_convo_handler.lua")
 includeFile("fixer_convo_handler.lua")
