@@ -741,6 +741,11 @@ includeFile("jedi_master_vantos_spawn.lua")
 includeFile("seron_kai_convo_handler.lua")
 includeFile("master_vantos_handler.lua")
 
+-- Nal Hutta (from Stardust)
+includeFile("cities/hutta_bilbousa_city.lua")
+--includeFile("heroics/hutt_slave_auctioneer.lua") 
+
+
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
 

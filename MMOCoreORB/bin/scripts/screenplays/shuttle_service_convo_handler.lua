@@ -20,7 +20,9 @@ function shuttle_service_convo_handler:runScreenHandlers(pConvTemplate, pPlayer,
     local screenidtwo = readStringData(playerID .. ":shuttle:screenID")
     print("screenID 2:" .. screenidtwo)
     print("shuttle_service_convo_handler:runScreenHandlers")
-    if (screenID == "corellia" or screenID == "naboo" or screenID == "tatooine" or screenID == "jabba") then
+    if (screenID == "corellia" or screenID == "naboo" or screenID == "tatooine" or screenID == "jabba"
+	or screenID == "oho_jedi" or screenID == "lyra_jedi" or screenID == "creature_handler"
+	or screenID == "hutta_planet") then
 	 print("Lets go!")
 	 --writeData(playerID .. ":ShuttleService:screenId", screenID)
 	 --createEvent(100, "CityControlLanding", "setupMusic", pMobile, "")
@@ -45,53 +47,44 @@ function shuttle_service_convo_handler:bringhome(pPlayer)
 
 	local playerTable = SceneObject(pShuttle):getPlayersInRange(150)
 	SceneObject(pShuttle):destroyObjectFromWorld()
-	-- Corellia
-	if screenID == "corellia" then
-		print("Heading to Corellia")
-		if (#playerTable > 0) then
-			print("more than 0 players")
-			for i = 1, #playerTable, 1 do
-				local pPlayer = playerTable[i]
-				SceneObject(pPlayer):switchZone("corellia", -1626, 21, -5621, 0)
-			end
+
+	if (screenID == "oho_jedi" or  screenID == "lyra_jedi") then
+		if screenID == "oho_jedi" then
+			SceneObject(pPlayer):switchZone("corellia", -3444, 78, 3212, 0)
+		else -- Lyra's Jedi Trainer
+			SceneObject(pPlayer):switchZone("corellia", -164, 28, -4714, 0)
 		end
-		print("no players")
-	end
-	-- Naboo
-	if screenID == "naboo" then
-		print("Heading to Naboo")
-                if (#playerTable > 0) then
-			print("more than 0 players")
-                        for i = 1, #playerTable, 1 do
-                                local pPlayer = playerTable[i]
-				SceneObject(pPlayer):switchZone("naboo", 76, 14, 135, 0)
-                        end
-                end
-	end
-
-        -- Tatooine
-        if screenID == "tatooine" then
-                print("Heading to Tatooine")
+	else
                 if (#playerTable > 0) then
                         print("more than 0 players")
                         for i = 1, #playerTable, 1 do
-                                local pPlayer = playerTable[i]
-                                SceneObject(pPlayer):switchZone("tatooine", -3831, 2, -6293, 0)
-                        end
-                end
-        end
-
-	-- Jabba's Palace
-        if screenID == "jabba" then
-                print("Heading to Jabba")
-                if (#playerTable > 0) then
-                        print("more than 0 players")
-                        for i = 1, #playerTable, 1 do
-                                local pPlayer = playerTable[i]
-                                SceneObject(pPlayer):switchZone("tatooine", -5870, 90, -6174, 0)
-                        end
-                end
-        end
+				local pPlayer = playerTable[i]
+				-- Creature Handler
+				if screenID == "creature_handler" then
+					SceneObject(pPlayer):switchZone("corellia", -58, 0, -4522, 0)
+				end
+				-- Homes
+				if screenID == "corellia" then
+					SceneObject(pPlayer):switchZone("corellia", -1626, 21, -5621, 0)
+				end
+				if screenID == "naboo" then
+					SceneObject(pPlayer):switchZone("naboo", 76, 14, 135, 0)
+				end
+				if screenID == "tatooine" then
+					SceneObject(pPlayer):switchZone("tatooine", -3831, 2, -6293, 0)
+				end
+				if screenID == "jabba" then
+					SceneObject(pPlayer):switchZone("tatooine", -5870, 90, -6174, 0)
+				end
+                                -- Planets
+                                if screenID == "hutta_planet" then
+                                        SceneObject(pPlayer):switchZone("hutta", -746, 80, 1656, 0)
+				else
+					print("Not implemented yet!")
+				end
+			end -- for playerTable
+		end -- if playerTable > 0  
+	end -- single / multi target
 
 	print("bringhome - end")
 end

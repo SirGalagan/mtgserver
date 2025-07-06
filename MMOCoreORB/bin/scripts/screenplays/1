@@ -16,9 +16,6 @@ function fixer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	 -- Adding skills:
 	--awardSkill(pPlayer, "force_title_jedi_rank_01")
 	--self:jedi_fast_track(pPlayer)
-	self:bounty_hunter_track(pPlayer)
-        
-	--awardSkill(pPlayer, "outdoors_creaturehandler_master")
 	-- Jabba
 	--local pGhost = CreatureObject(pPlayer):getPlayerObject()
 	--PlayerObject(pGhost):increaseFactionStanding("jabba", 100)
@@ -27,7 +24,7 @@ function fixer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	-- for another time...
 	--local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 	 -- Adding XP
-	-- CreatureObject(pPlayer):awardExperience("jedi_general", 615180, true)
+	 CreatureObject(pPlayer):awardExperience("jedi_general", 615180, true)
 	--local pItem = giveItem(pInventory, "object/tangible/crafting/station/jedi_tool.iff", -1)
 	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
 	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/jetpack_deed.iff", -1)
@@ -57,60 +54,45 @@ end
 
 function fixer_convo_handler:bounty_hunter_track(pPlayer)
 
-    print("bounty_hunter starts")
+    print("jedi_fast_track starts")
     local pGhost = CreatureObject(pPlayer):getPlayerObject()
     CreatureObject(pPlayer):sendSystemMessage(" \\#FFFF00\\You got a blaster and you think you already a bounty hunter,huh?")
-    awardSkill(pPlayer, "outdoors_creaturehandler_master")
---[[
     -- Combat Medic
-    awardSkill(pPlayer, "science_medic_master")
-    awardSkill(pPlayer, "science_combatmedic_novice")
+    awardSkill(pPlayer, "")
+    awardSkill(pPlayer, "")
+    awardSkill(pPlayer, "")
     -- Basic Creature Handler
-    awardSkill(pPlayer, "outdoors_creaturehandler_novice")
+    awardSkill(pPlayer, "")
+    awardSkill(pPlayer, "")
+    awardSkill(pPlayer, "")
     -- Bounty hunter
-    awardSkill(pPlayer, "combat_marksman_master")
-    awardSkill(pPlayer, "combat_bountyhunter_novice")
+    awardSkill(pPlayer, "")
+    awardSkill(pPlayer, "")
+
     local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
     if not pInventory or SceneObject(pInventory):isContainerFullRecursive() then
-        CreatureObject(pPlayer):sendSystemMessage("Cant spawn items in Inventory")
+        CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
+    else
+        local pItem = giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_padawan.iff", -1)
+        --local pItem = giveItem(pInventory, "object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff", -1)
     end
---[[
-    -- Basic Bounty Hunter equipments
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_chest_plate.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_bicep_r.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_bracer_l.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_bracer_r.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_bicep_l.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_boots.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_helmet.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_belt.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_gloves.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/bounty_hunter/armor_bounty_hunter_leggings.iff", -1)
---[[
-    -- Boba's weapons
-    giveItem(pInventory, "object/weapon/ranged/carbine/carbine_ee3.iff", -1)
-    giveItem(pInventory,"object/weapon/ranged/rifle/rifle_tenloss_dxr6_disruptor_loot.iff", -1)
 
-    -- Jetpack
-    giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
-    giveItem(pInventory, "object/tangible/deed/vehicle_deed/jetpack_deed.iff", -1)
+    -- Ligthsaber crafting materials
+    local pItem = giveItem(pInventory, "object/tangible/crafting/station/jedi_tool.iff", -1)
+    giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
+    giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
+    giveItem(pInventory, "object/tangible/veteran_reward/resource.iff", -1)
+
+
+    -- Boba's weapons
+    
     
     -- Mandalorian Armour
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_belt.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bicep_l.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bicep_r.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bracer_l.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_bracer_r.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_chest_plate.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_gloves.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_helmet.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_leggings.iff", -1)
-    giveItem(pInventory, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_shoes.iff", -1)
 
     -- Some experience if needed
     -- CreatureObject(pPlayer):awardExperience("creaturehandler",200000,true)
     -- CreatureObject(pPlayer):awardExperience("",200000,true)
-    ]]--
+
 
 
 end -- bounty hunter fast track

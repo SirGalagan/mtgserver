@@ -264,3 +264,32 @@ yavin4 = {
 	weatherStability = 70, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
+
+-----------------
+--     Hutta
+-----------------
+hutta = {
+
+  defaultWeather = 0, -- Sunny
+
+  averageWeatherDuration = 3600, -- In seconds
+
+  weatherStability = 80, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+
+-----------------
+--   Moraband
+-----------------
+moraband = {
+
+  defaultWeather = 0, -- Sunny
+
+  averageWeatherDuration = 3600, -- In seconds
+
+  weatherStability = 80, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+
+}
+
+
+

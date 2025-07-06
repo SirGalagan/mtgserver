@@ -34,10 +34,16 @@ function ContentSpawner:spawnTatooineNPCs()
 end
 
 function ContentSpawner:spawnCorelliaNPCs()
+  -- Home on Corellia
   spawnMobile("corellia", "shuttle_service", 0, -1629, 21, -5621, 0, 0)
+  -- Oho's Jedi trainer
+  spawnMobile("corellia", "shuttle_service", 0, -3448, 78, 3210, 0, 0)
+  -- Lyra's Jedi trainer
+  spawnMobile("corellia", "shuttle_service", 0, -164, 28, -4712, 0, 0)
 end
 
 function ContentSpawner:spawnNabooNPCs()
+  -- Home on Naboo
   spawnMobile("naboo", "shuttle_service", 0, 79, 14, 134, 0, 0)
 end
 

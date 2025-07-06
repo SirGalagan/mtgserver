@@ -690,6 +690,57 @@ tutorial = {
 	jtlLaunchPoint = {"space_dathomir", -6900, 2750, -4000},
 }
 
+--[[
+hutta = {
+  weatherEnabled = 1,
+  gcwEnabled = 0
+
+}
+
+--[[
+hutta = { -- 23
+  weatherEnabled = 1,
+  gcwEnabled = 0,
+  
+  planetTravelPoints = {
+    {name = "Bilbousa Starport", x = -789, z = 80, y = 1769, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = {
+      {"hutta_jiguuna",4716,1937,0,15,150},   
+  },
+}
+
+--[[
+moraband = { -- 25
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+  
+  planetTravelPoints = {
+    {name = "Archaeological Outpost", x = -1696, z = 91, y = -624, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = {   
+      {"moraband_valley", -1626,-669,0,20,148}, 
+      {"moraband_dreshdae", 1091,-5328,0,90,149}, 
+  },
+}
+]]--
+hoth = {
+
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+
+  planetTravelPoints = {
+    --{name = "Keldabe", x = 1563, z = 4, y = -6415, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+  },
+
+  badgeAreas = {
+  },
+
+}
+
+
 creature_test = {
 	weatherEnabled = 1,
 	gcwEnabled = 1,

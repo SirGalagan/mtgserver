@@ -61,18 +61,18 @@ globalExpMultiplier = 30.0
 
 --Sets the base number of control devices of each type that a player can have in their datapad at once
 --For creature pets, A Creature Handler will have the base number + their stored pets skill mod as limit
-baseStoredCreaturePets = 2
-baseStoredFactionPets = 3
-baseStoredDroids = 5
-baseStoredVehicles = 5
-baseStoredShips = 3
+baseStoredCreaturePets = 10
+baseStoredFactionPets = 10
+baseStoredDroids = 10
+baseStoredVehicles = 10
+baseStoredShips = 10
 
 -----------------------------------
 --VETERAN REWARDS CONFIG
 -----------------------------------
-veteranRewardMilestones = {90, 180, 270, 360, 450, 540, 630, 720, 810, 900, 990, 1080} --days, must be sorted low to high
+veteranRewardMilestones = {5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100} --days, must be sorted low to high
 
-veteranRewardAdditionalMilestones = 360 --frequency, in days, of additional milestones (beyond the established ones)
+veteranRewardAdditionalMilestones = 10 --frequency, in days, of additional milestones (beyond the established ones)
 
 veteranRewards = {
 	-- 90 Day Rewards

@@ -489,6 +489,22 @@ includeFile("spawn/yavin4/yavin4_western_medium.lua")
 includeFile("spawn/yavin4/yavin4_western_peak.lua")
 includeFile("spawn/yavin4/yavin4_world.lua")
 
+
+-- SirGalagan - new planets from Stardust
+includeFile("spawn/moraband_world.lua")
+includeFile("spawn/hutta_world.lua")
+includeFile("spawn/global_hard.lua")
+
+-- Mustafar
+includeFile("spawn/mustafar_lava_fleas.lua")
+includeFile("spawn/mustafar_blistmoks.lua")
+includeFile("spawn/mustafar_tulrus.lua")
+includeFile("spawn/mustafar_tanrays.lua")
+includeFile("spawn/mustafar_xandanks.lua")
+includeFile("spawn/mustafar_jundaks.lua")
+includeFile("spawn/mustafar_kubaza_beetles.lua")
+includeFile("spawn/mustafar_storm_lord_minions.lua")
+
 -- destroy_mission
 includeFile("spawn/destroy_mission/corellia_destroy_missions.lua")
 includeFile("spawn/destroy_mission/dantooine_destroy_missions.lua")

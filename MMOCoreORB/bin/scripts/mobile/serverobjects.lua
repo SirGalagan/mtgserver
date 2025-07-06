@@ -80,5 +80,11 @@ includeFile("seron_kai_npc.lua")
 includeFile("jedi_master_vantos.lua")
 includeFile("mysterious_stranger.lua")
 
+-- New cities
+includeFile("moraband/serverobjects.lua")
+includeFile("hutta/serverobjects.lua") 
+includeFile("mustafar/serverobjects.lua")
+
+
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/mobile/serverobjects.lua")
