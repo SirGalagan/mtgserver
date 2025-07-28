@@ -345,6 +345,10 @@ includeFile("conversations/om5_convo.lua")
 includeFile("conversations/seron_kai_convo.lua")
 includeFile("conversations/mysterious_stranger_convo.lua")
 includeFile("conversations/master_vantos_convo.lua")
+includeFile("conversations/hangar_officer_convo.lua")
+includeFile("conversations/helper_convo.lua")
+includeFile("conversations/lift_operator.lua")
+
 
 -- Custom Conversations
 includeFile("custom_content/conversations.lua")

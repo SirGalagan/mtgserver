@@ -10,15 +10,27 @@ greeting = ConvoScreen:new {
     customDialogText = "Greetings! Where our shuttle can take you?",
     stopConversation = "false",
     options = {
-        {"Back home on Corellia!", "corellia"},
-	{"Back home on Naboo!", "naboo"},
-	{"Back home on Tatooine!", "tatooine"},
+        {"Back home!", "home"},
 	{"Back to Jabba's Palace!", "jabba"},
 	{"Take me to a planet!", "planets"},
-	{"Take me to a trainer!", "trainers"}
+	{"Take me to a trainer!", "trainers"},
+	{"Event locations!", "events"}
     }
 }
 shuttle_service_convo_template:addScreen(greeting)
+
+home = ConvoScreen:new {
+    id = "home",
+    customDialogText = "Where?",
+    stopConversation = "false",
+    options = {
+	{"Back home on Corellia!", "corellia"},
+        {"Back home on Naboo!", "naboo"},
+        {"Back home on Tatooine!", "tatooine"}
+    }
+}
+shuttle_service_convo_template:addScreen(home)
+
 
 corellia = ConvoScreen:new {
     id = "corellia",
@@ -189,6 +201,25 @@ creature_handler = ConvoScreen:new {
     options = {}
 }
 shuttle_service_convo_template:addScreen(creature_handler)
+
+
+events = ConvoScreen:new {
+    id = "events",
+    customDialogText = "Which event?",
+    stopConversation = "false",
+    options = {
+        {"1. ???", "event_star_destroyer"}
+    }
+}
+shuttle_service_convo_template:addScreen(events)
+
+event_star_destroyer = ConvoScreen:new {
+    id = "event_star_destroyer",
+    customDialogText = "Sir! Yes! Sir!",
+    stopConversation = "true",
+    options = {}
+}
+shuttle_service_convo_template:addScreen(event_star_destroyer)
 
 
 addConversationTemplate("shuttle_service_convo_template", shuttle_service_convo_template)

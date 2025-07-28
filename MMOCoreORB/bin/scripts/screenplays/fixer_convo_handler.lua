@@ -16,9 +16,19 @@ function fixer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	 -- Adding skills:
 	--awardSkill(pPlayer, "force_title_jedi_rank_01")
 	--self:jedi_fast_track(pPlayer)
-	self:bounty_hunter_track(pPlayer)
-        
-	--awardSkill(pPlayer, "outdoors_creaturehandler_master")
+--	self:bounty_hunter_track(pPlayer)
+        CreatureObject(pPlayer):setFactionRank(0)
+        CreatureObject(pPlayer):setFaction(0)
+        CreatureObject(pPlayer):setFactionStatus(0)
+	--[[
+       awardSkill(pPlayer, "combat_brawler_master")
+       awardSkill(pPlayer, "outdoors_bio_engineer_creature_02")
+       awardSkill(pPlayer, "outdoors_bio_engineer_tissue_02")
+       awardSkill(pPlayer, "outdoors_bio_engineer_dna_harvesting_02")
+       awardSkill(pPlayer, "outdoors_bio_engineer_production_02")
+       awardSkill(pPlayer, "outdoors_creaturehandler_master")
+       ]]--
+
 	-- Jabba
 	--local pGhost = CreatureObject(pPlayer):getPlayerObject()
 	--PlayerObject(pGhost):increaseFactionStanding("jabba", 100)
@@ -28,7 +38,9 @@ function fixer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, sel
 	--local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 	 -- Adding XP
 	-- CreatureObject(pPlayer):awardExperience("jedi_general", 615180, true)
-	--local pItem = giveItem(pInventory, "object/tangible/crafting/station/jedi_tool.iff", -1)
+--	local pItem = giveItem(pInventory, "object/tangible/crafting/station/jedi_tool.iff", -1)
+--	giveItem(pInventory, "object/weapon/melee/2h_sword/shared_2h_sword_katana_quest.iff", -1)
+--	giveItem(pInventory, "object/weapon/melee/sword/sword_blade_ryyk.iff", -1)
 	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/speederbike_deed.iff", -1)
 	--giveItem(pInventory, "object/tangible/deed/vehicle_deed/jetpack_deed.iff", -1)
 	--giveItem(pInventory, "", -1)

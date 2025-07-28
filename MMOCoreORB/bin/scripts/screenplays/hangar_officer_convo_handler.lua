@@ -1,39 +1,96 @@
-shuttle_service_convo_handler = conv_handler:new {}
+hangar_officer_convo_handler = conv_handler:new {}
 
-function shuttle_service_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
-    print("shuttle_service_convo_handler:getInitialScreen")
+function hangar_officer_convo_handler:getInitialScreen(pPlayer, pNpc, pConvTemplate)
+    print("hangar_officer_convo_handler:getInitialScreen")
     local convoTemplate = LuaConversationTemplate(pConvTemplate)
     return convoTemplate:getScreen("greeting")
 end
 
-function shuttle_service_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
+function hangar_officer_convo_handler:truncateToThreeDecimals(num)
+    return math.floor(num * 1000) / 1000
+end
+
+function hangar_officer_convo_handler:truncateToInt(num)
+    if num >= 0 then
+        return math.floor(num)
+    else
+        return math.ceil(num)
+    end
+end
+
+
+function hangar_officer_convo_handler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
     local screen = LuaConversationScreen(pConvScreen)
     local screenID = screen:getScreenID()
     local playerID = SceneObject(pPlayer):getObjectID()
+    local sceeneID = getSceneObject(14201228)
     local NPCID = SceneObject(pNpc):getObjectID()
-    writeData(playerID .. ":shuttle:playerID", playerID)
-    writeData(playerID .. ":shuttle:screenID", screenID)
-    writeData(playerID .. ":shuttle:NPCID", NPCID)
-    print("Write NPCID:" .. NPCID)
-    writeStringData(playerID .. ":shuttle:screenID", screenID)
-    print("screenID 1:" .. screenID)
-    local screenidtwo = readStringData(playerID .. ":shuttle:screenID")
-    print("screenID 2:" .. screenidtwo)
-    print("shuttle_service_convo_handler:runScreenHandlers")
-    if (screenID == "corellia" or screenID == "naboo" or screenID == "tatooine" or screenID == "jabba"
-	or screenID == "oho_jedi" or screenID == "lyra_jedi" or screenID == "creature_handler"
-	or screenID == "hutta_planet" or screenID == "event_star_destroyer") then
+    print("pNpc World X:" .. SceneObject(pNpc):getWorldPositionX())
+    print("pNpc World Y:" .. SceneObject(pNpc):getWorldPositionY())
+    print("pNpc World Z:" .. SceneObject(pNpc):getWorldPositionZ())
+    print("pNpc X:" .. SceneObject(pNpc):getPositionX())
+    print("pNpc Y:" .. SceneObject(pNpc):getPositionY())
+    print("pNpc Z:" .. SceneObject(pNpc):getPositionZ())
+    print("pNpc ParentID:" .. SceneObject(pNpc):getParentID())
+    print("pNpc Angle:" .. SceneObject(pNpc):getDirectionAngle())
+    print("getWorldFloor: " .. getWorldFloor(SceneObject(pNpc):getWorldPositionX(), SceneObject(pNpc):getWorldPositionY(), "dungeon2"))
+    --print("SceneObject1:" .. SceneObject(14201228):getWorldPositionZ())
+    print("SceneObject2:" .. SceneObject(sceeneID):getWorldPositionZ())
+    --print("SceneObject3:" .. sceeneID:getWorldPositionZ())
+    print("getTerrainHeight:" .. getTerrainHeight(getSceneObject(14201228), 0, 0))
+    print("getPosition:" .. SceneObject(sceeneID):getPositionZ())
+    --print("getCellFloorCollision:" .. getCellFloorCollision(0,0,SceneObject(sceeneID)))
+    --print("14201228 Z:" .. sceeneID:getWorldPositionZ())
+    
+
+    -- spawnMobile("dungeon2", "hangar_officer", 0, 14.3052, 172.335, 325.194, 60, 14201228)
+    local CellX = self:truncateToThreeDecimals(SceneObject(pNpc):getPositionX())
+    local CellY = self:truncateToThreeDecimals(SceneObject(pNpc):getPositionY())
+    local CellZ = self:truncateToThreeDecimals(SceneObject(pNpc):getPositionZ())
+    local CellID = SceneObject(pNpc):getParentID()
+    local heading = self:truncateToInt(SceneObject(pNpc):getDirectionAngle())
+
+    print("spawnMobile(\"dungeon2\", \"imp_st_lvl15_enemy\", 300, " .. CellX .. ", " .. CellZ .. ", " .. CellY .. ", " .. heading .. ", " .. CellID ..")")
+
+    print("spawnMobile(\"dungeon2\", \"imp_st_lvl15_enemy\", 300, getRandomNumber(5) + " .. CellX .. ", " .. CellZ .. ", getRandomNumber(5) +" .. CellY .. ", getRandomNumber(360) + 0, " .. CellID ..")")
+
+
+    if (screenID == "party_starts") then
 	 print("Lets go!")
 	 --writeData(playerID .. ":ShuttleService:screenId", screenID)
 	 --createEvent(100, "CityControlLanding", "setupMusic", pMobile, "")
-	 self:setupMusic(pPlayer)
-	 self:shuttleflyby(pPlayer)
+	 --self:setupMusic(pPlaiyer)
+	local playerTable = SceneObject(pPlayer):getPlayersInRange(1000000)
+        --local landingType = readStringData("LandingType:")
+    	local musicTemplate = "sound/station_alarm.snd"
+
+        --if (landingType == "REBEL") then
+        --      musicTemplate = "sound/music_leia_theme_stereo.snd"
+        --else
+        --      musicTemplate = "sound/music_darth_vader_theme.snd"
+        --end
+
+      	if (#playerTable > 0) then
+        	      print("Play music for more than 0 players")
+              	for i = 1, #playerTable, 1 do
+                	     local pPlayer = playerTable[i]
+                      	if (pPlayer ~= nil and musicTemplate ~= nil) then
+                        	CreatureObject(pPlayer):setFaction(FACTIONREBEL)
+                             	CreatureObject(pPlayer):setFactionStatus(3)
+                              	CreatureObject(pPlayer):playMusicMessage(musicTemplate)
+                              	CreatureObject(pPlayer):playMusicMessage(musicTemplate)
+                              	CreatureObject(pPlayer):playMusicMessage(musicTemplate)
+                      	end
+              	end
+      	else
+      	        print("0 players!")
+      	end
     end
-    print("Shuttle service ends here")
+    print("Hangar ends here")
     return pConvScreen
 end
 
-function shuttle_service_convo_handler:bringhome(pPlayer)
+function hangar_officer_convo_handler:bringhome(pPlayer)
 	print("bringhome")
 	--local pScreenId = readStringData("screenId:")
 	--local pShuttle = readStringData("shuttleID:")
@@ -79,10 +136,6 @@ function shuttle_service_convo_handler:bringhome(pPlayer)
                                 -- Planets
                                 if screenID == "hutta_planet" then
                                         SceneObject(pPlayer):switchZone("hutta", -746, 80, 1656, 0)
-				end
-				-- Events
-				if screenID == "event_star_destroyer" then
-                                        SceneObject(pPlayer):switchZone("dungeon2", 18.5485, 172.335, 327.461, 14201228)
 				else
 					print("Not implemented yet!")
 				end
@@ -95,7 +148,7 @@ end
 
 
 
-function shuttle_service_convo_handler:shuttleflyby(pPlayer)
+function hangar_officer_convo_handler:shuttleflyby(pPlayer)
     print("Shuttle Fly By")
     local playerID = SceneObject(pPlayer):getObjectID()
     local planetName = SceneObject(pPlayer):getZoneName()
@@ -121,12 +174,12 @@ function shuttle_service_convo_handler:shuttleflyby(pPlayer)
     print("shuttleID:" .. shuttleID)
     --writeData(playerID .. ":ShuttleService:shuttleID", shuttleID)
     --writeData(playerID .. ":ShuttleService:shuttleStatus", 1) -- Spawned
-    createEvent(1 * 1000, "shuttle_service_convo_handler", "handleShuttlePosture", pPlayer, "")
+    createEvent(1 * 1000, "hangar_officer_convo_handler", "handleShuttlePosture", pPlayer, "")
     --createEvent(6 * 1000, "ShuttleDropoff", "landShuttle", pPlayer, "")
 
 end
 
-function shuttle_service_convo_handler:handleShuttlePosture(pPlayer)
+function hangar_officer_convo_handler:handleShuttlePosture(pPlayer)
 	--print("handleShuttlePosture(pPlayer)" .. pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 	print("handleShuttlePosture:playerID:" .. playerID)
@@ -141,11 +194,11 @@ function shuttle_service_convo_handler:handleShuttlePosture(pPlayer)
 	CreatureObject(pShuttle):setPosture(PRONE)
 	--writeStringData("ShuttlePosture:", "PRONE")
 	--createEvent(19000, "CityControlLanding", "spawnLandingParty", "", "")
-	createEvent(21 * 1000, "shuttle_service_convo_handler", "bringhome", pPlayer, "")
+	createEvent(21 * 1000, "hangar_officer_convo_handler", "bringhome", pPlayer, "")
 end
 
 --[[
-function shuttle_service_convo_handler:landShuttle(pPlayer)
+function hangar_officer_convo_handler:landShuttle(pPlayer)
 	print("Land Shuttle")
 	local pShuttle = getSceneObject(shuttleID)
 	CreatureObject(pShuttle):setPosture(PRONE)
@@ -153,14 +206,15 @@ function shuttle_service_convo_handler:landShuttle(pPlayer)
 
 end
 ]]--
-function shuttle_service_convo_handler:setupMusic(pMobile)
+function hangar_officer_convo_handler:setupMusic(pMobile)
 	if (pMobile == nil) then
 		return
 	end
 	print("setupMusic")
+	
 	local playerTable = SceneObject(pMobile):getPlayersInRange(150)
 	--local landingType = readStringData("LandingType:")
-	local musicTemplate = "sound/mus_imp_march.snd"
+	local musicTemplate = "sound/station_alarm.snd"
 
 	--if (landingType == "REBEL") then
 	--	musicTemplate = "sound/music_leia_theme_stereo.snd"
@@ -174,8 +228,15 @@ function shuttle_service_convo_handler:setupMusic(pMobile)
 			local pPlayer = playerTable[i]
 
 			if (pPlayer ~= nil and musicTemplate ~= nil) then
+				CreatureObject(pPlayer):setFaction(FACTIONIMPERIAL)
+        			CreatureObject(pPlayer):setFactionStatus(1)
+				
+				CreatureObject(pPlayer):playMusicMessage(musicTemplate)
+				CreatureObject(pPlayer):playMusicMessage(musicTemplate)
 				CreatureObject(pPlayer):playMusicMessage(musicTemplate)
 			end
 		end
+	else
+		print("0 players!")
 	end
 end 
